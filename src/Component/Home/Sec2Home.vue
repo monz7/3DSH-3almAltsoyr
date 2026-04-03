@@ -101,7 +101,7 @@ const featuredPosts = [
     time: "8 دقائق للقراءة",
     author: "سالم أحمد",
     date: "١٥ يناير ٢٠٢٦",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&amp;h=100&amp;fit=crop&amp;crop=face",
+    avatar:"https://images.unsplash.com/photo-1500835556837-99ac94a94552?w=800&h=400&fit=crop",
   },
   {
     id: 2,
