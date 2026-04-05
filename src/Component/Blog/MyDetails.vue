@@ -1,11 +1,11 @@
 <template>
     <div class="relative h-[80vh] min-h-125 overflow-hidden">
-        <img alt="إتقان تصوير الساعة الذهبية: دليل شامل" class="absolute inset-0 w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1500835556837-99ac94a94552?w=800&amp;h=400&amp;fit=crop">
+        <img :alt="post.desc" class="absolute inset-0 w-full h-full object-cover" :src="post.image">
         <div class="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent"></div>
         <div class="absolute inset-0 bg-linear-to-r from-[#0a0a0a]/30 to-transparent"></div>
         <div class="absolute top-24 right-8 left-8">
-            <nav class="inline-flex items-center gap-2 px-4 py-2 bg-black/30 backdrop-blur-md rounded-full text-sm border border-white/10">
+            <nav
+                class="inline-flex items-center gap-2 px-4 py-2 bg-black/30 backdrop-blur-md rounded-full text-sm border border-white/10">
                 <RouterLink class="text-white/70 hover:text-white transition-colors" to="/">
                     <i class="fa-solid fa-home"></i>
                 </RouterLink>
@@ -20,25 +20,24 @@
                 <div class="flex flex-wrap items-center gap-3 mb-6">
                     <RouterLink
                         class="px-4 py-2 bg-orange-500 text-white text-sm font-bold rounded-full hover:bg-orange-600 transition-colors">
-                        إضاءة</RouterLink>
+                        {{ post.categ }}</RouterLink>
                     <div class="flex items-center gap-4 text-white/70 text-sm">
                         <span class="flex items-center gap-2">
-                            <i class="fa-regular fa-calendar"></i>١٥ يناير ٢٠٢٦</span>
+                            <i class="fa-regular fa-calendar"></i>{{ post.date }}</span>
                         <span class="flex items-center gap-2">
-                            <i class="fa-regular fa-clock"></i>8 دقائق للقراءة
+                            <i class="fa-regular fa-clock"></i>{{ post.time }}
                         </span>
                     </div>
                 </div>
-                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight max-w-4xl">إتقان
-                    تصوير الساعة الذهبية: دليل شامل
-                </h1>
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight max-w-4xl">{{
+                    post.desc }}</h1>
                 <div
                     class="flex items-center gap-4 p-4 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 w-fit">
-                    <img alt="سالم أحمد" class="w-12 h-12 rounded-full object-cover ring-2 ring-orange-500/50"
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&amp;h=100&amp;fit=crop&amp;crop=face">
+                    <img :alt="post.name" class="w-12 h-12 rounded-full object-cover ring-2 ring-orange-500/50"
+                        :src="post.imgItem">
                     <div>
-                        <p class="font-bold text-white">سالم أحمد</p>
-                        <p class="text-sm text-white/60">مصور محترف</p>
+                        <p class="font-bold text-white">{{ post.author.name }}</p>
+                        <p class="text-sm text-white/60">{{ post.author.role }}</p>
                     </div>
                 </div>
             </div>
@@ -49,57 +48,18 @@
             <div class="order-2 lg:order-1">
                 <div
                     class="p-6 bg-linear-to-r from-orange-500/10 to-yellow-500/5 rounded-2xl border border-orange-500/20 mb-10">
-                    <p class="text-lg text-neutral-200 leading-relaxed italic">"تعلم كيفية التقاط صور مذهلة خلال
-                        الساعة الذهبية مع نصائح احترافية حول الإضاءة والتكوين."</p>
+                    <p class="text-lg text-neutral-200 leading-relaxed italic">{{ post.title }}</p>
                 </div>
-                <div class="prose-custom">
-                    <p class="text-neutral-300 leading-relaxed mb-6 text-lg">الساعة الذهبية هي أكثر الأوقات سحراً
-                        للتصوير الفوتوغرافي. ذلك الوقت القصير بعد شروق الشمس وقبل غروبها حيث يكون الضوء ناعماً
-                        ودافئاً وساحراً.</p>
-                    <h2 id="section-0"
+                <p class="text-neutral-300 leading-relaxed mb-6 text-lg">{{ post.description }}</p>
+                <div class="prose-custom" v-for="section in post.sections" :key="section.id">
+
+                    <h2 :id="section.id"
                         class="text-2xl md:text-3xl font-bold text-white mt-14 mb-6 flex items-center gap-4 scroll-mt-24">
                         <span
                             class="flex items-center justify-center w-10 h-10 bg-orange-500/10 rounded-xl border border-orange-500/30"><i
-                                class="fa-solid fa-camera text-orange-500"></i></span>لماذا الساعة الذهبية؟
+                                class="fa-solid fa-camera text-orange-500"></i></span>{{ section.title }}
                     </h2>
-                    <p class="text-neutral-300 leading-relaxed mb-6 text-lg">الضوء خلال هذا الوقت له صفات فريدة:
-                        ظلال طويلة ناعمة، ألوان دافئة ذهبية، وتباين منخفض يجعل كل شيء يبدو أجمل. البورتريهات تكتسب
-                        توهجاً طبيعياً والمناظر الطبيعية تتحول إلى لوحات فنية.</p>
-                    <h2 id="section-1"
-                        class="text-2xl md:text-3xl font-bold text-white mt-14 mb-6 flex items-center gap-4 scroll-mt-24">
-                        <span
-                            class="flex items-center justify-center w-10 h-10 bg-orange-500/10 rounded-xl border border-orange-500/30"><i
-                                class="fa-solid fa-camera text-orange-500"></i></span>التحضير المسبق
-                    </h2>
-                    <p class="text-neutral-300 leading-relaxed mb-6 text-lg">خطط لجلسة التصوير مسبقاً. استخدم
-                        تطبيقات مثل PhotoPills لمعرفة وقت الساعة الذهبية بدقة في موقعك. وصل قبل 30 دقيقة لاختيار
-                        أفضل زاوية.</p>
-                    <h2 id="section-2"
-                        class="text-2xl md:text-3xl font-bold text-white mt-14 mb-6 flex items-center gap-4 scroll-mt-24">
-                        <span
-                            class="flex items-center justify-center w-10 h-10 bg-orange-500/10 rounded-xl border border-orange-500/30"><i
-                                class="fa-solid fa-camera text-orange-500"></i></span>إعدادات الكاميرا
-                    </h2>
-                    <p class="text-neutral-300 leading-relaxed mb-6 text-lg">استخدم ISO منخفض للحصول على أقل ضوضاء.
-                        فتحة العدسة تعتمد على ما تريد: f/1.8-f/2.8 للبورتريهات مع خلفية ضبابية، أو f/8-f/11 للمناظر
-                        الطبيعية الحادة.</p>
-                    <h2 id="section-3"
-                        class="text-2xl md:text-3xl font-bold text-white mt-14 mb-6 flex items-center gap-4 scroll-mt-24">
-                        <span
-                            class="flex items-center justify-center w-10 h-10 bg-orange-500/10 rounded-xl border border-orange-500/30">
-                            <i class="fa-solid fa-camera text-orange-500"></i>
-                        </span>التكوين الفني
-                    </h2>
-                    <p class="text-neutral-300 leading-relaxed mb-6 text-lg">ضع الشمس خلف موضوعك للحصول على تأثير
-                        الإضاءة الخلفية الساحر. أو استخدمها كمصدر جانبي لإبراز الملمس والعمق.</p>
-                    <h2 id="section-4"
-                        class="text-2xl md:text-3xl font-bold text-white mt-14 mb-6 flex items-center gap-4 scroll-mt-24">
-                        <span
-                            class="flex items-center justify-center w-10 h-10 bg-orange-500/10 rounded-xl border border-orange-500/30"><i
-                                class="fa-solid fa-camera text-orange-500"></i></span>الخلاصة
-                    </h2>
-                    <p class="text-neutral-300 leading-relaxed mb-6 text-lg">الساعة الذهبية هي هدية للمصورين.
-                        استغلها جيداً وستحصل على صور لا تُنسى تتميز بجمالها الطبيعي.</p>
+                    <p class="text-neutral-300 leading-relaxed mb-6 text-lg">{{ section.content }}</p>
                 </div>
                 <div class="mt-14 p-6 bg-[#111111] rounded-2xl border border-[#262626]">
                     <div class="flex items-center gap-3 mb-4">
@@ -109,12 +69,13 @@
                         </div>
                         <h3 class="font-bold text-white">الوسوم</h3>
                     </div>
-                    <div class="flex flex-wrap gap-2"><span
-                            class="px-4 py-2 bg-[#1a1a1a] text-neutral-400 text-sm rounded-full border border-[#262626] hover:border-orange-500/50 hover:text-orange-500 transition-colors cursor-pointer">#إضاءة</span><span
-                            class="px-4 py-2 bg-[#1a1a1a] text-neutral-400 text-sm rounded-full border border-[#262626] hover:border-orange-500/50 hover:text-orange-500 transition-colors cursor-pointer">#الساعة
-                            الذهبية</span><span
-                            class="px-4 py-2 bg-[#1a1a1a] text-neutral-400 text-sm rounded-full border border-[#262626] hover:border-orange-500/50 hover:text-orange-500 transition-colors cursor-pointer">#تصوير
-                            خارجي</span></div>
+
+                    <div class="flex flex-wrap gap-2">
+                        <span  v-for="tag in post.tags" :key="tag"
+                            class="px-4 py-2 bg-[#1a1a1a] text-neutral-400 text-sm rounded-full border border-[#262626] hover:border-orange-500/50 hover:text-orange-500 transition-colors cursor-pointer">
+                            #{{ tag }}
+                        </span>
+                    </div>
                 </div>
                 <div class="mt-6 p-6 bg-[#111111] rounded-2xl border border-[#262626]">
                     <div class="flex items-center justify-between flex-wrap gap-4">
@@ -148,15 +109,14 @@
                 <div class="mt-6 p-8 bg-linear-to-br from-[#161616] to-[#111111] rounded-2xl border border-[#262626]">
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6"><img alt="سالم أحمد"
                             class="w-24 h-24 rounded-2xl object-cover ring-4 ring-orange-500/20"
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&amp;h=100&amp;fit=crop&amp;crop=face">
+                            :src="post.imgItem">
                         <div class="text-center sm:text-right flex-1">
                             <span class="text-xs text-orange-500 font-semibold uppercase tracking-wider">كاتب
                                 المقال
                             </span>
-                            <h3 class="text-xl font-bold text-white mt-1">سالم أحمد</h3>
-                            <p class="text-neutral-500 text-sm mb-3">مصور محترف</p>
-                            <p class="text-neutral-400 text-sm leading-relaxed">مصور محترف شغوف بمشاركة المعرفة
-                                والخبرات في عالم التصوير الفوتوغرافي.</p>
+                            <h3 class="text-xl font-bold text-white mt-1">{{ post.author.name }}</h3>
+                            <p class="text-neutral-500 text-sm mb-3"> {{ post.author.role }} </p>
+                            <p class="text-neutral-400 text-sm leading-relaxed">{{ post.author.bio }}</p>
                         </div>
                     </div>
                 </div>
@@ -172,35 +132,11 @@
                             <h3 class="font-bold text-white">محتويات المقال</h3>
                         </div>
                         <nav class="space-y-2">
-                            <RouterLink
+                            <RouterLink v-for="item, index in post.tableOfContents"
                                 class="flex items-center gap-3 p-3 rounded-xl text-neutral-400 hover:text-orange-500 hover:bg-orange-500/5 transition-all duration-300 group">
                                 <span
-                                    class="flex items-center justify-center w-6 h-6 bg-[#1a1a1a] rounded-lg text-xs font-bold text-neutral-500 group-hover:bg-orange-500/10 group-hover:text-orange-500 transition-colors">1</span><span
-                                    class="text-sm">لماذا الساعة الذهبية؟</span>
-                            </RouterLink>
-                            <RouterLink
-                                class="flex items-center gap-3 p-3 rounded-xl text-neutral-400 hover:text-orange-500 hover:bg-orange-500/5 transition-all duration-300 group">
-                                <span
-                                    class="flex items-center justify-center w-6 h-6 bg-[#1a1a1a] rounded-lg text-xs font-bold text-neutral-500 group-hover:bg-orange-500/10 group-hover:text-orange-500 transition-colors">2</span><span
-                                    class="text-sm">التحضير المسبق</span>
-                            </RouterLink>
-                            <RouterLink
-                                class="flex items-center gap-3 p-3 rounded-xl text-neutral-400 hover:text-orange-500 hover:bg-orange-500/5 transition-all duration-300 group">
-                                <span
-                                    class="flex items-center justify-center w-6 h-6 bg-[#1a1a1a] rounded-lg text-xs font-bold text-neutral-500 group-hover:bg-orange-500/10 group-hover:text-orange-500 transition-colors">3</span><span
-                                    class="text-sm">إعدادات الكاميرا</span>
-                            </RouterLink>
-                            <RouterLink
-                                class="flex items-center gap-3 p-3 rounded-xl text-neutral-400 hover:text-orange-500 hover:bg-orange-500/5 transition-all duration-300 group">
-                                <span
-                                    class="flex items-center justify-center w-6 h-6 bg-[#1a1a1a] rounded-lg text-xs font-bold text-neutral-500 group-hover:bg-orange-500/10 group-hover:text-orange-500 transition-colors">4</span><span
-                                    class="text-sm">التكوين الفني</span>
-                            </RouterLink>
-                            <RouterLink
-                                class="flex items-center gap-3 p-3 rounded-xl text-neutral-400 hover:text-orange-500 hover:bg-orange-500/5 transition-all duration-300 group">
-                                <span
-                                    class="flex items-center justify-center w-6 h-6 bg-[#1a1a1a] rounded-lg text-xs font-bold text-neutral-500 group-hover:bg-orange-500/10 group-hover:text-orange-500 transition-colors">5</span><span
-                                    class="text-sm">الخلاصة</span>
+                                    class="flex items-center justify-center w-6 h-6 bg-[#1a1a1a] rounded-lg text-xs font-bold text-neutral-500 group-hover:bg-orange-500/10 group-hover:text-orange-500 transition-colors">{{ index + 1 }}</span>
+                                    <span class="text-sm">{{ item.title }}</span>
                             </RouterLink>
                         </nav>
                     </div>
@@ -208,12 +144,12 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div class="text-center p-4 bg-[#0a0a0a] rounded-xl"><i
                                     class="fa-regular fa-clock text-orange-500 text-xl mb-2"></i>
-                                <p class="text-white font-bold">8 دقائق للقراءة</p>
+                                <p class="text-white font-bold">{{ post.time }}</p>
                                 <p class="text-neutral-500 text-xs">وقت القراءة</p>
                             </div>
                             <div class="text-center p-4 bg-[#0a0a0a] rounded-xl"><i
                                     class="fa-regular fa-calendar text-orange-500 text-xl mb-2"></i>
-                                <p class="text-white font-bold text-sm">١٥ يناير</p>
+                                <p class="text-white font-bold text-sm">{{ post.date }}</p>
                                 <p class="text-neutral-500 text-xs">تاريخ النشر</p>
                             </div>
                         </div>
@@ -236,6 +172,7 @@
                 </div>
             </aside>
         </div>
+        
         <div class="mt-20 pt-12 border-t border-[#262626]">
             <div class="flex items-center justify-between mb-10">
                 <div class="flex items-center gap-4">
@@ -328,9 +265,10 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router';
-
-
+import { RouterLink, useRoute } from 'vue-router';
+import { posts } from './Mydata';
+const route = useRoute();
+const post = posts.find(p => p?.id == route.params.id);
 </script>
 
 <style scoped></style>
